@@ -75,7 +75,7 @@ sub MAIN (Str $download-path, Str :$music-path = %*ENV{'HOME'}.IO.child('Music')
 	my Str @files = $download-path.IO.dir.map({ .Str });
 
 	for map-files-to-destinations(@files, $music-path, $dest-format).kv -> $a, $b {
-		once { mkdir($b.IO.parent); };
+		mkdir($b.IO.parent);
 		say "$a -> $b" if $a.IO.move($b);
 	}
 }
